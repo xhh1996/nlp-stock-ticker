@@ -326,3 +326,16 @@ function extractQueryParts(query: string): string[] {
 
   return combinedParts;
 }
+
+// 获取所有股票数据
+export const getAllStocks = async (): Promise<Stock[]> => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/v3/stock/list?apikey=${API_KEY}`
+    );
+    return response.data || [];
+  } catch (error) {
+    console.error("Error fetching all stocks:", error);
+    return [];
+  }
+};
